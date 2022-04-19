@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-security-jwt
+  name: spring-security-jwt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-security-jwt
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-security-jwt
+    spec:
+      containers:
+      - image: ramprasad2022/spring-security-jwt
+        name: spring-security-jwt
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-security-jwt
+spec:
+  type: NodePort
+  ports:
+  - port: 9090
+  selector:
+    app: spring-security-jwt
+status:
+  loadBalancer: {}
